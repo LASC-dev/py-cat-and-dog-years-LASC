@@ -20,3 +20,31 @@ def test_get_human_age_conversion(
         human_conversion: int
 ) -> None:
     assert get_human_age(cat_age, dog_age) == human_conversion
+
+
+@pytest.mark.parametrize(
+    "cat_age, dog_age", [
+        (-1, 5),
+        (3, -50)
+    ]
+)
+def test_negative_age_raises_error(
+    cat_age: int,
+    dog_age: int
+) -> None:
+    with pytest.raises(ValueError, match="Age cannot be negative"):
+        get_human_age(cat_age, dog_age)
+
+
+@pytest.mark.parametrize(
+    "cat_age, dog_age", [
+        ("10", 5),
+        (40, "8")
+    ]
+)
+def test_type_age_raises_error(
+    cat_age: int,
+    dog_age: int
+) -> None:
+    with pytest.raises(TypeError, match="Age must be a natural number"):
+        get_human_age(cat_age, dog_age)
