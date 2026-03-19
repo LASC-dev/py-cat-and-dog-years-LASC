@@ -39,7 +39,9 @@ def test_negative_age_raises_error(
 @pytest.mark.parametrize(
     "cat_age, dog_age", [
         ("10", 5),
-        (40, "8")
+        (40, "8"),
+        (5.8, 9),
+        (7, 1.02)
     ]
 )
 def test_type_age_raises_error(
